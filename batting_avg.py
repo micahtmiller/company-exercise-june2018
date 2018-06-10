@@ -33,6 +33,7 @@ def at_bats_filter(df, min_at_bats=200):
     return filtered_df
 
 def calculate_most_improved(df):
+    df['improved_batting_avg'] = df['batting_avg_2010'] - df['batting_avg_2009']
     most_improved_df = df[df['improved_batting_avg'] == df['improved_batting_avg'].max()]
     return most_improved_df
 
@@ -47,7 +48,7 @@ def main():
     most_improved_df = calculate_most_improved(filtered_df)
     # merge player_df to get names, not just code for better readability
     if len(most_improved_df) == 1:
-        print('Most Improved Player is: ', most_improved_df['playerID'][0])
+        print('Most Improved Player is: ', most_improved_df['playerID'].values[0])
     elif len(most_improved_df) > 1:
         print('There are multiple "Most Improved Player"s')
         for i, row in most_improved_df.iterrows():
