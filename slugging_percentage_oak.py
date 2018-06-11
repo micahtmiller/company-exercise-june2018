@@ -1,9 +1,11 @@
-import os
+import logging
 
 import pandas
 
 import config
 import utils
+
+logging.basicConfig(level=logging.DEBUG)
 
 def filter_oakland_2007(df):
     filtered_df = df[(df['teamID'] == 'OAK') & (df['yearID'] == 2007)].copy()
@@ -18,7 +20,7 @@ def calculate_sluggers(df):
     return df[['playerID', 'slugging_perc']].sort_values(by=['slugging_perc'], ascending=False).reset_index()
 
 def main():
-    batting_df, player_df = utils.import_data()
+    batting_df = utils.import_data('batting')
     filtered_df = filter_oakland_2007(batting_df)
     slugging_perc_df = calculate_sluggers(filtered_df)
     print('All Players Slugging Percentage')
