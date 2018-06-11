@@ -7,6 +7,7 @@ import config
 def import_data(file_location):
     batting_df = pandas.read_csv(os.path.join(file_location, 'Batting-07-12.csv'))
     player_df = pandas.read_csv(os.path.join(file_location, 'Master-small.csv'))
+    # pitching_df = pandas.read_csv(os.path.join(file_location, 'xxxx.csv'))
     return batting_df, player_df
 
 def group_by_player_and_year(df):
@@ -22,18 +23,15 @@ def filter_by_year(df, year):
     return filtered_df
 
 def merge_data(df1, df2):
-    max_year1 = df1['yearID'].max()
-    max_year2 = df2['yearID'].max()
-    merged_df = df2.merge(df1, how='inner', on=['playerID'], suffixes=['_{}'.format(max_year2), '_{}'.format(max_year1)])
+    merged_df = df2.merge(df1, how='inner', on=['playerID'], suffixes=['_2', '_1'])
     return merged_df
 
 def at_bats_filter(df, min_at_bats=200):
-    df['total_at_bats'] = df['AB_2010'] + df['AB_2009']
-    filtered_df = df[df['total_at_bats'] >= min_at_bats].copy()
+    filtered_df = df[(df['AB_2'] >= min_at_bats) & (df['AB_1'] >= min_at_bats)].copy()
     return filtered_df
 
 def calculate_most_improved(df):
-    df['improved_batting_avg'] = df['batting_avg_2010'] - df['batting_avg_2009']
+    df['improved_batting_avg'] = df['batting_avg_2'] - df['batting_avg_1']
     most_improved_df = df[df['improved_batting_avg'] == df['improved_batting_avg'].max()]
     return most_improved_df
 
