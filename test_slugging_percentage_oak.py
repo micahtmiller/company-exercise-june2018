@@ -1,7 +1,7 @@
 import pytest
 import pandas
 
-import slugging_percentage_oak
+import slugging_percentage
 
 import config
 
@@ -10,13 +10,15 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 def test_filter_oakland_2007():
+    team = 'OAK'
+    year = 2007
     data = [
         {'teamID': 'OAK', 'yearID': 2007},
         # {'teamID': 'OAK', 'yearID': 2008},
         # {'teamID': 'OTH', 'yearID': 2007},
     ]
     test_df = pandas.DataFrame(data)
-    filtered_df = slugging_percentage_oak.filter_oakland_2007(test_df)
+    filtered_df = slugging_percentage.filter_team_year(test_df, team, year)
     assert len(filtered_df) == 1
     data = [
         # {'teamID': 'OAK', 'yearID': 2007},
@@ -24,7 +26,7 @@ def test_filter_oakland_2007():
         # {'teamID': 'OTH', 'yearID': 2007},
     ]
     test_df = pandas.DataFrame(data)
-    filtered_df = slugging_percentage_oak.filter_oakland_2007(test_df)
+    filtered_df = slugging_percentage.filter_team_year(test_df, team, year)
     assert len(filtered_df) == 0
     data = [
         # {'teamID': 'OAK', 'yearID': 2007},
@@ -32,7 +34,7 @@ def test_filter_oakland_2007():
         {'teamID': 'OTH', 'yearID': 2007},
     ]
     test_df = pandas.DataFrame(data)
-    filtered_df = slugging_percentage_oak.filter_oakland_2007(test_df)
+    filtered_df = slugging_percentage.filter_team_year(test_df, team, year)
     assert len(filtered_df) == 0
     
 def test_calculate_sluggers():
@@ -43,7 +45,7 @@ def test_calculate_sluggers():
     # (1 + 2 * 1 + 3 * 1 + 4 * 1)  = 10
     # 10 / 5 = 2.0
     test_df = pandas.DataFrame(data)
-    sluggers_df = slugging_percentage_oak.calculate_sluggers(test_df)
+    sluggers_df = slugging_percentage.calculate_sluggers(test_df)
     logging.debug(sluggers_df)
     assert sluggers_df['slugging_perc'].values[0] == 2.0 
     data = [
@@ -53,7 +55,7 @@ def test_calculate_sluggers():
     # (2 + 2 * 2 + 3 * 2 + 4 * 2)  = 20
     # 20 / 40 = .5
     test_df = pandas.DataFrame(data)
-    sluggers_df = slugging_percentage_oak.calculate_sluggers(test_df)
+    sluggers_df = slugging_percentage.calculate_sluggers(test_df)
     logging.debug(sluggers_df)
     assert sluggers_df['slugging_perc'].values[0] == 0.5
 
