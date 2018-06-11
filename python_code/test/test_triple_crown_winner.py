@@ -16,28 +16,28 @@ def test_filter_league_year():
         {'league': 'AL', 'yearID': 2009, 'AB': 500}
     ]
     test_df = pandas.DataFrame(data)
-    df = triple_crown_winner.filter_league_year(test_df, league, year, at_bats=400)
+    df = triple_crown_winner.filter_league_year(test_df, league, year, min_at_bats=400)
     assert df.equals(test_df)
 
     data = [
         {'league': 'AL', 'yearID': 2009, 'AB': 300}
     ]
     test_df = pandas.DataFrame(data)
-    df = triple_crown_winner.filter_league_year(test_df, league, year, at_bats=400)
+    df = triple_crown_winner.filter_league_year(test_df, league, year, min_at_bats=400)
     assert df.equals(test_df) == False
 
     data = [
         {'league': 'AL', 'yearID': 2010, 'AB': 500}
     ]
     test_df = pandas.DataFrame(data)
-    df = triple_crown_winner.filter_league_year(test_df, league, year, at_bats=400)
+    df = triple_crown_winner.filter_league_year(test_df, league, year, min_at_bats=400)
     assert df.equals(test_df) == False
 
     data = [
         {'league': 'NL', 'yearID': 2009, 'AB': 500}
     ]
     test_df = pandas.DataFrame(data)
-    df = triple_crown_winner.filter_league_year(test_df, league, year, at_bats=400)
+    df = triple_crown_winner.filter_league_year(test_df, league, year, min_at_bats=400)
     assert df.equals(test_df) == False
 
 def test_get_max_home_runs():
