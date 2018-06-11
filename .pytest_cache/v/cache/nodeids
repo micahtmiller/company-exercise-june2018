@@ -3,5 +3,9 @@
   "test_batting_avg.py::test_calculate_most_improved",
   "test_slugging_percentage_oak.py::test_filter_oakland_2007",
   "test_slugging_percentage_oak.py::test_calculate_sluggers",
+  "test_triple_crown_winner.py::test_filter_league_year",
+  "test_triple_crown_winner.py::test_get_max_home_runs",
+  "test_triple_crown_winner.py::test_get_max_rbi",
+  "test_triple_crown_winner.py::test_get_max_batting_avg",
   "test_utils.py::test_import"
 ]
