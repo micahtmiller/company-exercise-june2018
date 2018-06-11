@@ -9,14 +9,10 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-def test_import():
-    batting_df, player_df = batting_avg.import_data(config.DATA_FILE_LOCATION)
-    assert len(batting_df) > 10
-    assert len(player_df) > 10
-
 def test_calculate_batting_average():
     test_df = pandas.DataFrame([{'H': 1, 'AB': 2}])
     batting_avg_df = batting_avg.calculate_batting_average(test_df)
+    logging.debug(batting_avg_df)
     assert batting_avg_df['batting_avg'].values[0] == .5
 
 def test_calculate_most_improved():
@@ -31,6 +27,5 @@ def test_calculate_most_improved():
     assert most_improved_df['improved_batting_avg'].values[0] == 0.2
 
 if __name__ == '__main__':
-    test_import()
     test_calculate_batting_average()
     test_calculate_most_improved()

@@ -1,1 +1,1 @@
-DATA_FILE_LOCATION = './requirements'
+DATA_FILES_LOCATION = './requirements'

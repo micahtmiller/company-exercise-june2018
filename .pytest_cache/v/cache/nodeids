@@ -1,5 +1,7 @@
 [
-  "batting_avg_test.py::test_import",
-  "batting_avg_test.py::test_calculate_batting_average",
-  "batting_avg_test.py::test_calculate_most_improved"
+  "test_batting_avg.py::test_calculate_batting_average",
+  "test_batting_avg.py::test_calculate_most_improved",
+  "test_slugging_percentage_oak.py::test_filter_oakland_2007",
+  "test_slugging_percentage_oak.py::test_calculate_sluggers",
+  "test_utils.py::test_import"
 ]

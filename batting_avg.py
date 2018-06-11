@@ -1,14 +1,7 @@
-import os
-
 import pandas
 
-import config
+import utils
 
-def import_data(file_location):
-    batting_df = pandas.read_csv(os.path.join(file_location, 'Batting-07-12.csv'))
-    player_df = pandas.read_csv(os.path.join(file_location, 'Master-small.csv'))
-    # pitching_df = pandas.read_csv(os.path.join(file_location, 'xxxx.csv'))
-    return batting_df, player_df
 
 def group_by_player_and_year(df):
     grouped_df = df.groupby(by=['playerID', 'yearID'])['AB', 'H'].sum().reset_index()
@@ -36,7 +29,7 @@ def calculate_most_improved(df):
     return most_improved_df
 
 def main():
-    batting_df, player_df = import_data(config.DATA_FILE_LOCATION)
+    batting_df, player_df = utils.import_data()
     grouped_df = group_by_player_and_year(batting_df)
     batting_avg_df = calculate_batting_average(grouped_df)
     df_2009 = filter_by_year(batting_avg_df, 2009)
