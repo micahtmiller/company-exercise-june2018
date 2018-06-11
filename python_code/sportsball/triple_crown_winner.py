@@ -2,9 +2,8 @@ import logging
 
 import pandas
 
-import batting_avg
-import config
-import utils
+import sportsball.batting_avg as batting_avg
+import sportsball.utils as utils
 
 logging.basicConfig(level=logging.DEBUG)
 

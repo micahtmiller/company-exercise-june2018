@@ -1,7 +1,7 @@
-import batting_avg
-import slugging_percentage
-import triple_crown_winner
-import utils
+import sportsball.utils as utils
+import sportsball.batting_avg as batting_avg
+import sportsball.slugging_percentage as slugging_percentage
+import sportsball.triple_crown_winner as triple_crown_winner
 
 def main():
     batting_df = utils.import_data('batting')

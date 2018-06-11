@@ -1,7 +1,7 @@
 import pytest
 import pandas
 
-import batting_avg
+import sportsball.batting_avg as batting_avg
 
 import config
 

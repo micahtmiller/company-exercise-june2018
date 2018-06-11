@@ -1,6 +1,6 @@
 import pytest
 
-import utils
+import sportsball.utils as utils
 
 def test_import():
     batting_df = utils.import_data('batting')

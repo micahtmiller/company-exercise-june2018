@@ -1,7 +1,7 @@
 import pytest
 import pandas
 
-import slugging_percentage
+import sportsball.slugging_percentage as slugging_percentage
 
 import config
 

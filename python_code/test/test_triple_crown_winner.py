@@ -4,7 +4,7 @@ import pandas
 import pytest
 
 import config
-import triple_crown_winner
+import sportsball.triple_crown_winner as triple_crown_winner
 
 logging.basicConfig(level=logging.DEBUG)
 

@@ -3,7 +3,7 @@ import logging
 import pandas
 
 import config
-import utils
+import sportsball.utils as utils
 
 logging.basicConfig(level=logging.DEBUG)
 
