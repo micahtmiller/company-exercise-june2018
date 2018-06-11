@@ -27,8 +27,10 @@ def get_max_rbi(df):
     
 def find_triple_crown(df, max_batting_avg, max_hr, max_rbi):
     triple_crown_df = df[(df['batting_avg'] == max_batting_avg) & (df['HR'] == max_hr) & (df['RBI'] == max_rbi)]
-    if len(triple_crown_df) == 1:
-        return triple_crown_df['playerID'].values[0]
+    triple_crown_name_df = utils.add_player_details(triple_crown_df)
+    if len(triple_crown_name_df) == 1:
+        player_name = ' '.join(triple_crown_name_df[['nameFirst', 'nameLast']].values[0])
+        return player_name
     else:
         return 'No Winner'
 
