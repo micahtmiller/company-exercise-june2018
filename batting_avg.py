@@ -42,7 +42,8 @@ def main():
     df_2009 = filter_by_year(batting_avg_df, 2009)
     df_2010 = filter_by_year(batting_avg_df, 2010)
     merged_df = merge_data(df_2009, df_2010)
-    filtered_df = at_bats_filter(merged_df) #optional min_at_bats
+    # filtered_df = at_bats_filter(merged_df, min_at_bats=350) #optional min_at_bats, default=200
+    filtered_df = at_bats_filter(merged_df)
     most_improved_df = calculate_most_improved(filtered_df)
     # merge player_df to get names, not just code for better readability
     if len(most_improved_df) == 1:
