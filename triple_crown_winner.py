@@ -43,13 +43,14 @@ def get_triple_crown_winner(df, league, year):
     print('Triple Crown Winner (League: {l}, Year: {y}): '.format(l=league, y=year), winner)
 
 
-def main():
+def main(leagues, years):
     batting_df = utils.import_data('batting')
-    leagues = ['AL', 'NL']
-    years = range(2011, 2012 + 1)
+
     for year in years:
         for league in leagues:
             get_triple_crown_winner(batting_df, league, year)
 
 if __name__ == '__main__':
-    main()
+    leagues = ['AL', 'NL']
+    years = range(2011, 2012 + 1)
+    main(leagues, years)

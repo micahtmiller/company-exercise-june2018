@@ -17,12 +17,12 @@ def calculate_sluggers(df):
             (df['H'] - df['2B'] - df['3B'] - df['HR']) + (2 * df['2B']) + (3 * df['3B']) + (4 * df['HR'])
         ) / df['AB']
     )
-    return df[['playerID', 'slugging_perc']].sort_values(by=['slugging_perc'], ascending=False).reset_index()
+    return df[['playerID', 'slugging_perc']].sort_values(by=['slugging_perc'], ascending=False).reset_index(drop=True)
 
 def get_slugging_percentage(df, team, year):
     filtered_df = filter_team_year(df, team, year)
     slugging_perc_df = calculate_sluggers(filtered_df)
-    print('All Players Slugging Percentage')
+    print('All Players Slugging Percentage (Team: {t} , Year: {y})'.format(t=team, y=year))
     print(slugging_perc_df)
 
 def main(team, year):
