@@ -3,6 +3,7 @@ import pytest
 import utils
 
 def test_import():
-    batting_df, player_df = utils.import_data()
+    batting_df = utils.import_data('batting')
     assert len(batting_df) > 10
+    player_df = utils.import_data('player')
     assert len(player_df) > 10
