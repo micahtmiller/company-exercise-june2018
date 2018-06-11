@@ -2,11 +2,6 @@ import pandas
 
 import utils
 
-
-def group_by_player_and_year(df):
-    grouped_df = df.groupby(by=['playerID', 'yearID'])['AB', 'H'].sum().reset_index()
-    return grouped_df
-
 def calculate_batting_average(df):
     df['batting_avg'] = df['H']/df['AB']
     return df
@@ -29,8 +24,8 @@ def calculate_most_improved(df):
     return most_improved_df
 
 def main():
-    batting_df, player_df = utils.import_data()
-    grouped_df = group_by_player_and_year(batting_df)
+    batting_df= utils.import_data('batting')
+    grouped_df = utils.group_by_player_year_league(batting_df)
     batting_avg_df = calculate_batting_average(grouped_df)
     df_2009 = filter_by_year(batting_avg_df, 2009)
     df_2010 = filter_by_year(batting_avg_df, 2010)
