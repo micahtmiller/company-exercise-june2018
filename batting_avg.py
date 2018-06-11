@@ -1,6 +1,10 @@
+import logging
+
 import pandas
 
 import utils
+
+logging.basicConfig(level=logging.DEBUG)
 
 def calculate_batting_average(df):
     df['batting_avg'] = df['H']/df['AB']
@@ -32,15 +36,18 @@ def get_most_improved(df, start_year, end_year):
     # filtered_df = at_bats_filter(merged_df, min_at_bats=350) #optional min_at_bats, default=200
     filtered_df = at_bats_filter(merged_df)
     most_improved_df = calculate_most_improved(filtered_df)
-    if len(most_improved_df) == 1:
-        print('Most Improved Batting Average is: ', most_improved_df['playerID'].values[0])
-    elif len(most_improved_df) > 1:
-        print('There are multiple "Most Improved Batting Average"s')
-        for i, row in most_improved_df.iterrows():
-            print('Most Improved Batting Average is: ', row['playerID'])
+    most_improved_name_df = utils.add_player_details(most_improved_df)
+    if len(most_improved_name_df) == 1:
+        player_name = ' '.join(most_improved_name_df[['nameFirst', 'nameLast']].values[0])
+        print('Most Improved Batting Average (Start Year: {sy}, End Year: {ey}): '.format(sy=start_year, ey=end_year), player_name)
+    elif len(most_improved_name_df) > 1:
+        print('There seems to be a tie')
+    else:
+        logging.debug('No Most Improved Batting Average Found')
+
 
 def main():
-    batting_df= utils.import_data('batting')
+    batting_df = utils.import_data('batting')
     get_most_improved(batting_df, 2009, 2010)
 
 if __name__ == '__main__':
