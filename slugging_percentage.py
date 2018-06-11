@@ -22,8 +22,9 @@ def calculate_sluggers(df):
 def get_slugging_percentage(df, team, year):
     filtered_df = filter_team_year(df, team, year)
     slugging_perc_df = calculate_sluggers(filtered_df)
+    slugging_perc_name_df = utils.add_player_details(slugging_perc_df)
     print('All Players Slugging Percentage (Team: {t} , Year: {y})'.format(t=team, y=year))
-    print(slugging_perc_df)
+    print(slugging_perc_name_df[[ 'nameFirst', 'nameLast', 'playerID', 'slugging_perc']])
 
 def main(team, year):
     batting_df = utils.import_data('batting')
